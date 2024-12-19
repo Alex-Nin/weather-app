@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather Data and Statistics</title>
+    <style>
+        .table-container {
+            margin: 20px;
+        }
+
+        .column-toggles {
+            margin-bottom: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 8px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+    <h1>Weather Data and Statistics</h1>
+    <div class="table-container">
+        <table id="weather-table">
+            <thead>
+                <tr>
+                    <!-- Default columns -->
+                    {% for col in default_columns %}
+                    <th>{{ col|title }}</th>
+                    {% endfor %}
+                    <!-- Optional columns with toggle buttons -->
+                    {% for col in optional_columns %}
+                    <th>  <!-- Remove the optional-column class from th -->
+                        {{ col|title }}
+                    </th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for entry in data %}
+                <tr>
+                    <!-- Default columns -->
+                    <td>{{ entry.location }}</td>
+                    <td>{{ entry.min_temp }}</td>
+                    <td>{{ entry.max_temp }}</td>
+                    <td>{{ entry.rainfall }}</td>
+                    <!-- Optional columns -->
+                    {% for col in optional_columns %}
+                    <td class="optional-column" data-column="{{ col }}">
+                        {{ entry[col] if entry[col] is not none else 'N/A' }}
+                    </td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <h2>Statistics</h2>
+    <p>{{ statistics }}</p>
+</body>
+</html>

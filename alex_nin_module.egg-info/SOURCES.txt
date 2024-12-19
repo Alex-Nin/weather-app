@@ -1,0 +1,7 @@
+README.md
+setup.py
+alex_nin_module.egg-info/PKG-INFO
+alex_nin_module.egg-info/SOURCES.txt
+alex_nin_module.egg-info/dependency_links.txt
+alex_nin_module.egg-info/requires.txt
+alex_nin_module.egg-info/top_level.txt
